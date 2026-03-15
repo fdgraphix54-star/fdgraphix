@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FD GRAPHIX</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#0a0a0a;
+color:white;
+overflow-x:hidden;
+}
+
+#loader{
+position:fixed;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.loader-logo{
+width:120px;
+height:120px;
+background:url("fdgraphix.jpg");
+background-size:cover;
+border-radius:12px;
+animation:spin 2s linear infinite;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg)}
+100%{transform:rotate(360deg)}
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+position:fixed;
+width:100%;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+.logo{
+width:60px;
+height:60px;
+background:url("fdgraphix.jpg");
+background-size:cover;
+border-radius:10px;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:30px;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+}
+
+.menu-btn{
+display:none;
+font-size:28px;
+cursor:pointer;
+}
+
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.9)),
+url("fdgraphix.jpg");
+background-size:cover;
+background-position:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:80px;
+letter-spacing:6px;
+background:linear-gradient(90deg,#FFD400,#ffffff);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.hero p{
+margin-top:20px;
+font-size:22px;
+color:#ccc;
+}
+
+section{
+padding:100px 10%;
+}
+
+h2{
+text-align:center;
+font-size:40px;
+margin-bottom:60px;
+}
+
+.portfolio{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.work{
+position:relative;
+overflow:hidden;
+border-radius:10px;
+cursor:pointer;
+}
+
+.work img{
+width:100%;
+height:260px;
+object-fit:cover;
+transition:0.5s;
+}
+
+.work:hover img{
+transform:scale(1.2);
+}
+
+.work span{
+position:absolute;
+bottom:0;
+width:100%;
+padding:10px;
+background:rgba(0,0,0,0.7);
+text-align:center;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.service{
+background:#111;
+padding:40px;
+border-radius:10px;
+text-align:center;
+transition:0.3s;
+}
+
+.service:hover{
+transform:translateY(-10px);
+}
+
+.contact{
+max-width:600px;
+margin:auto;
+}
+
+.contact input,
+.contact textarea{
+width:100%;
+padding:15px;
+margin:10px 0;
+border:none;
+background:#1b1b1b;
+color:white;
+border-radius:8px;
+}
+
+.contact button{
+width:100%;
+padding:15px;
+background:#FFD400;
+border:none;
+border-radius:30px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:2000;
+}
+
+.popup img{
+max-width:80%;
+border-radius:10px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+color:#777;
+}
+
+@media(max-width:768px){
+
+nav ul{
+display:none;
+flex-direction:column;
+background:black;
+position:absolute;
+top:80px;
+right:0;
+width:200px;
+padding:20px;
+}
+
+nav ul.active{
+display:flex;
+}
+
+.menu-btn{
+display:block;
+}
+
+.hero h1{
+font-size:50px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="loader">
+<div class="loader-logo"></div>
+</div>
+
+<nav>
+
+<div class="logo"></div>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<ul id="menu">
+<li><a href="#">Accueil</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<div class="hero">
+
+<h1>FD GRAPHIX</h1>
+
+<p>Creative Graphic Design Studio</p>
+
+</div>
+
+<section id="portfolio">
+
+<h2>Portfolio</h2>
+
+<div class="portfolio">
+
+<div class="work" onclick="openPopup(this)">
+<img src="https://images.unsplash.com/photo-1613909207039-6b173b755cc1">
+<span>Logo Design</span>
+</div>
+
+<div class="work" onclick="openPopup(this)">
+<img src="https://images.unsplash.com/photo-1609921205586-1c0c4b4a93c1">
+<span>Poster</span>
+</div>
+
+<div class="work" onclick="openPopup(this)">
+<img src="https://images.unsplash.com/photo-1558655146-d09347e92766">
+<span>Branding</span>
+</div>
+
+</div>
+
+</section>
+
+<section id="services">
+
+<h2>Services</h2>
+
+<div class="services">
+
+<div class="service">
+<h3>Logo Design</h3>
+<p>Création de logos professionnels.</p>
+</div>
+
+<div class="service">
+<h3>Brand Identity</h3>
+<p>Identité visuelle complète.</p>
+</div>
+
+<div class="service">
+<h3>Social Media</h3>
+<p>Design pour réseaux sociaux.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2>Contact</h2>
+
+<div class="contact">
+
+<input type="text" placeholder="Nom">
+<input type="email" placeholder="Email">
+<textarea rows="5" placeholder="Message"></textarea>
+
+<button>Envoyer</button>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 FD GRAPHIX
+
+</footer>
+
+<div class="popup" id="popup" onclick="closePopup()">
+<img id="popupImg">
+</div>
+
+<script>
+
+window.onload=function(){
+document.getElementById("loader").style.display="none";
+}
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+
+function openPopup(el){
+let img=el.querySelector("img").src
+document.getElementById("popupImg").src=img
+document.getElementById("popup").style.display="flex"
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none"
+}
+
+</script>
+
+</body>
+</html>
