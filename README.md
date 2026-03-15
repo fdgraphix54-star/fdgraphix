@@ -1,2 +1,0 @@
-# fdgraphix
-Graphic design 
